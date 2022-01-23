@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import './App.css'
 import Login from './components/Login/Login'
+import Player from './components/Player/Player'
 import { getToken } from './spotify'
 
 const spotify = new SpotifyWebApi()
@@ -27,7 +28,7 @@ function App() {
     }
   }, [])
 
-  return <div className="app">{token ? <h1>Logged in</h1> : <Login />}</div>
+  return <div className="app">{token ? <Player /> : <Login />}</div>
 }
 
 export default App
