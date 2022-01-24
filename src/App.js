@@ -23,6 +23,13 @@ function App() {
         token: _token,
       })
 
+      if (spotify) {
+        dispatch({
+          type: 'SET_SPOTIFY',
+          spotify,
+        })
+      }
+
       // allows react to talk to spotify api
       spotify.setAccessToken(_token)
 
@@ -36,7 +43,6 @@ function App() {
     }
   }, [])
 
-  console.log(user)
   return <div className="app">{token ? <Player /> : <Login />}</div>
 }
 
