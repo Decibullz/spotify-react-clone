@@ -3,12 +3,14 @@ export const initialState = {
   playlists: [],
   playing: false,
   item: null,
-  token: null,
+  //   remove token when finished developing
+  token:
+    'BQBDCgwfmSiUD3acH8qJmLXxXVJyMcC_RrThOXMvH65umkqwJt…8Xeo5GkM7V6_xc0h7TKhcdzA2UqCKU-GMpXT-Xqm4i4wr5IX9',
+  spotify: null,
 }
 
 const reducer = (state, action) => {
   console.log(action)
-
   switch (action.type) {
     case 'SET_USER':
       return {
@@ -19,6 +21,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         token: action.token,
+      }
+    case 'SET_SPOTIFY':
+      return {
+        ...state,
+        spotify: action.spotify,
       }
     default:
       return state
