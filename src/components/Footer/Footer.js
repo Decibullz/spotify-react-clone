@@ -28,6 +28,7 @@ function Footer() {
         item: r.item,
       })
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [{ spotify }])
 
   const handlePlayPause = () => {
