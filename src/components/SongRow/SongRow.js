@@ -1,7 +1,6 @@
 import './SongRow.css'
 
 function SongRow({ song }) {
-  console.log(song)
   return (
     <div className="songRow">
       <img
