@@ -1,5 +1,7 @@
+import { Favorite, MoreHoriz, PlayCircleFilled } from '@material-ui/icons'
 import { useDataLayerValue } from '../../DataLayer'
 import Header from '../Header/Header'
+import SongRow from '../SongRow/SongRow'
 import './Body.css'
 
 function Body() {
@@ -15,7 +17,16 @@ function Body() {
           <p>{discoverWeekly?.description}</p>
         </div>
       </div>
-      <div className="body_songs"></div>
+      <div className="body_songs">
+        <div className="body_icons">
+          <PlayCircleFilled className="body_shuffle" />
+          <Favorite fontSize="large" />
+          <MoreHoriz />
+        </div>
+        {discoverWeekly?.tracks.items.map((item) => (
+          <SongRow song={item.track} />
+        ))}
+      </div>
     </div>
   )
 }
