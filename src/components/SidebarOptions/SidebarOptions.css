@@ -5,6 +5,7 @@
     height: 40px;
     cursor: pointer;
     transition: 200ms color ease-in;
+    overflow: hidden;
 }
 .sidebarOptions:hover{
     color:white
