@@ -1,4 +1,3 @@
-import React from 'react'
 import './SongRow.css'
 
 function SongRow({ song }) {
