@@ -15,18 +15,17 @@ import { useDataLayerValue } from '../../DataLayer'
 
 function Footer() {
   const [{ spotify, playing, item }, dispatch] = useDataLayerValue()
-  useEffect(() => {
-    spotify.getMyCurrentPlaybackState().then((playing) => {
-      // console.log(playing)
 
+  useEffect(() => {
+    spotify.getMyCurrentPlaybackState().then((r) => {
       dispatch({
         type: 'SET_PLAYING',
-        playing: playing.is_playing,
+        playing: r.is_playing,
       })
 
       dispatch({
         type: 'SET_ITEM',
-        item: playing.item,
+        item: r.item,
       })
     })
   }, [{ spotify }])
@@ -49,10 +48,10 @@ function Footer() {
 
   const skipNext = () => {
     spotify.skipToNext()
-    spotify.getMyCurrentPlayingTrack().then((next) => {
+    spotify.getMyCurrentPlayingTrack().then((r) => {
       dispatch({
         type: 'SET_ITEM',
-        item: next.item,
+        item: r.item,
       })
       dispatch({
         type: 'SET_PLAYING',
@@ -63,10 +62,10 @@ function Footer() {
 
   const skipPrevious = () => {
     spotify.skipToPrevious()
-    spotify.getMyCurrentPlayingTrack().then((previous) => {
+    spotify.getMyCurrentPlayingTrack().then((r) => {
       dispatch({
         type: 'SET_ITEM',
-        item: previous.item,
+        item: r.item,
       })
       dispatch({
         type: 'SET_PLAYING',
@@ -80,16 +79,16 @@ function Footer() {
       <div className="footer_left">
         <img
           className="footer_albumImg"
-          src={item?.album?.images[0].url}
+          src={item?.album.images[0].url}
           alt={item?.name}
         />
         {item ? (
           <div className="footer_songInfo">
-            <h5>{item?.name}</h5>
+            <h5>{item.name}</h5>
             <p>{item.artists.map((artist) => artist.name).join(', ')}</p>
           </div>
         ) : (
-          <div className="footer__songInfo">
+          <div className="footer_songInfo">
             <h4>No song is playing</h4>
             <p>...</p>
           </div>
