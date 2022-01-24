@@ -4,6 +4,7 @@
     color: white;
     padding: 30px;
     background: linear-gradient(rgb(80, 61, 156), rgba(0, 0, 0, 1));
+    overflow-y: overlay;
 }
 .body_info{
     display: flex;
@@ -13,8 +14,13 @@
 }
 .body_info >img{
     height: 20vw;
+    min-width: 155px;
+    min-height: 155px;
+    max-width: 233px;
+    max-height: 233px;
     margin: 0 20px;
     box-shadow:  0 4px 60px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
 }
 
 .body_infoText{
@@ -28,4 +34,30 @@
 
 .body_infoText >p{
     font-size: 14px;
+}
+
+.body_songs{
+    margin: 20px, -30px;
+}
+
+.body_icons{
+    display: flex;
+    align-items: center;
+}
+.body_icons > .MuiSvgIcon-root{
+    margin-right: 20px;
+}
+
+.body_shuffle {
+    font-size: 80px !important;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px ;
+    color:rgb(80, 179, 92) ;
+
+}
+
+.body_shuffle:hover{
+    transition: 100ms transform ease-in;
+    transform: scale(1.1);
 }
