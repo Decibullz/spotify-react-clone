@@ -11,7 +11,6 @@ export const initialState = {
 }
 
 const reducer = (state, action) => {
-  console.log(action)
   switch (action.type) {
     case 'SET_USER':
       return {
@@ -37,6 +36,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         discoverWeekly: action.discoverWeekly,
+      }
+    case 'SET_PLAYING':
+      return {
+        ...state,
+        playing: action.playing,
+      }
+    case 'SET_ITEM':
+      return {
+        ...state,
+        item: action.item,
       }
     default:
       return state
