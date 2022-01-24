@@ -1,9 +1,10 @@
+import Header from '../Header/Header'
 import './Body.css'
 
 function Body() {
   return (
     <div className="body">
-      <h1>Im the Body</h1>
+      <Header />
     </div>
   )
 }
