@@ -5,7 +5,45 @@ import SongRow from '../SongRow/SongRow'
 import './Body.css'
 
 function Body() {
-  const [{ discoverWeekly }] = useDataLayerValue()
+  const [{ spotify, discoverWeekly }, dispatch] = useDataLayerValue()
+
+  const playPlaylist = (id) => {
+    spotify
+      .play({
+        context_uri: `spotify:playlist:${discoverWeekly.id}`,
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: 'SET_ITEM',
+            item: r.item,
+          })
+          dispatch({
+            type: 'SET_PLAYING',
+            playing: true,
+          })
+        })
+      })
+  }
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: 'SET_ITEM',
+            item: r.item,
+          })
+          dispatch({
+            type: 'SET_PLAYING',
+            playing: true,
+          })
+        })
+      })
+  }
+
   return (
     <div className="body">
       <Header />
@@ -19,12 +57,12 @@ function Body() {
       </div>
       <div className="body_songs">
         <div className="body_icons">
-          <PlayCircleFilled className="body_shuffle" />
+          <PlayCircleFilled onClick={playPlaylist} className="body_shuffle" />
           <Favorite fontSize="large" />
           <MoreHoriz />
         </div>
         {discoverWeekly?.tracks.items.map((item) => (
-          <SongRow song={item.track} />
+          <SongRow playSong={playSong} song={item.track} />
         ))}
       </div>
     </div>
