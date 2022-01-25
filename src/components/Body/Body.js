@@ -62,7 +62,7 @@ function Body() {
           <MoreHoriz />
         </div>
         {discoverWeekly?.tracks.items.map((item) => (
-          <SongRow playSong={playSong} song={item.track} />
+          <SongRow playSong={playSong} song={item.track} key={item.track.id} />
         ))}
       </div>
     </div>
