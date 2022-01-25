@@ -17,19 +17,24 @@ function Footer() {
   const [{ spotify, playing, item }, dispatch] = useDataLayerValue()
 
   useEffect(() => {
-    spotify.getMyCurrentPlaybackState().then((r) => {
-      dispatch({
-        type: 'SET_PLAYING',
-        playing: r.is_playing,
-      })
+    spotify
+      .getMyCurrentPlaybackState()
+      .then((r) => {
+        dispatch({
+          type: 'SET_PLAYING',
+          playing: r.is_playing,
+        })
 
-      dispatch({
-        type: 'SET_ITEM',
-        item: r.item,
+        dispatch({
+          type: 'SET_ITEM',
+          item: r.item,
+        })
       })
-    })
+      .catch((error) => {
+        console.error(error)
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [{ spotify }])
+  }, [item])
 
   const handlePlayPause = () => {
     if (playing) {
@@ -43,22 +48,29 @@ function Footer() {
       dispatch({
         type: 'SET_PLAYING',
         playing: true,
+      }).catch((error) => {
+        console.error(error)
       })
     }
   }
 
   const skipNext = () => {
     spotify.skipToNext()
-    spotify.getMyCurrentPlayingTrack().then((r) => {
-      dispatch({
-        type: 'SET_ITEM',
-        item: r.item,
+    spotify
+      .getMyCurrentPlayingTrack()
+      .then((r) => {
+        dispatch({
+          type: 'SET_ITEM',
+          item: r.item,
+        })
+        dispatch({
+          type: 'SET_PLAYING',
+          playing: true,
+        })
       })
-      dispatch({
-        type: 'SET_PLAYING',
-        playing: true,
+      .catch((error) => {
+        console.error(error)
       })
-    })
   }
 
   const skipPrevious = () => {
@@ -67,10 +79,14 @@ function Footer() {
       dispatch({
         type: 'SET_ITEM',
         item: r.item,
+      }).catch((error) => {
+        console.error(error)
       })
       dispatch({
         type: 'SET_PLAYING',
         playing: true,
+      }).catch((error) => {
+        console.error(error)
       })
     })
   }
