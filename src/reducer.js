@@ -3,9 +3,7 @@ export const initialState = {
   playlists: [],
   playing: false,
   item: null,
-  //   remove token when finished developing
-  // token:
-  //   'BQBDCgwfmSiUD3acH8qJmLXxXVJyMcC_RrThOXMvH65umkqwJt…8Xeo5GkM7V6_xc0h7TKhcdzA2UqCKU-GMpXT-Xqm4i4wr5IX9',
+  token: null,
   spotify: {},
   discoverWeekly: null,
 }
@@ -53,3 +51,6 @@ const reducer = (state, action) => {
 }
 
 export default reducer
+
+// token:
+//   'BQBDCgwfmSiUD3acH8qJmLXxXVJyMcC_RrThOXMvH65umkqwJt…8Xeo5GkM7V6_xc0h7TKhcdzA2UqCKU-GMpXT-Xqm4i4wr5IX9',
