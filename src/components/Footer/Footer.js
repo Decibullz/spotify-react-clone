@@ -48,8 +48,6 @@ function Footer() {
       dispatch({
         type: 'SET_PLAYING',
         playing: true,
-      }).catch((error) => {
-        console.error(error)
       })
     }
   }
